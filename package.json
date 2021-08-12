@@ -21,12 +21,16 @@
   },
   "homepage": "https://github.com/qogita/frontend-challenge#readme",
   "dependencies": {
+    "@headlessui/react": "^1.4.0",
+    "@heroicons/react": "^1.0.3",
     "axios": "^0.21.1",
+    "framer-motion": "^4.1.17",
     "mobx": "^6.3.2",
     "mobx-react-lite": "^3.2.0",
     "next": "^11.0.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-top-loading-bar": "^2.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.15",

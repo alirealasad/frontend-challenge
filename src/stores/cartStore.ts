@@ -29,14 +29,12 @@ class CartStore {
   }
 
   get cartTotal() {
-    return parseInt(
-      Array.from(this.cartRegistery.values())
+    return Array.from(this.cartRegistery.values())
         .reduce(
           (amount, product) => product.recommendedRetailPrice * product.quantity + amount,
           0
         )
         .toFixed(2)
-    );
   }
 
   get cartTotalItems() {

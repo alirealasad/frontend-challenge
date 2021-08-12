@@ -1,11 +1,17 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
+import DefaultLayout from "components/layouts/DefaultLayout";
+import AppLayout from "components/layouts/AppLayout";
 import { store, StoreContext } from "../stores/store";
 
-import '../global.css';
+import "styles/global.css";
 
 const QogitaApp = ({ Component, pageProps }: AppProps): JSX.Element => (
   <StoreContext.Provider value={store}>
-  <Component {...pageProps} />
+    <DefaultLayout>
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
+    </DefaultLayout>
   </StoreContext.Provider>
 );
 

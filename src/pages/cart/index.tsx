@@ -1,22 +1,23 @@
-import Layout from '../../components/Layout';
 import { observer } from "mobx-react-lite";
-import { useStore } from "../../stores/store";
+import { useStore } from "stores/store";
+import Head from "next/head";
+import CartPage from 'components/cart/CartPage';
 
-function CartPage() {
+
+interface CartProps {}
+
+
+const Cart: React.FC<CartProps> = () =>{
     const {cart, cartTotal, clearCart, cartTotalItems,addToCart,removeFromCart,removeAllItems} = useStore().cartStore;
 
   return (
-    <Layout>
-      <h1>cart</h1>
-      <button onClick={() => {clearCart()}}>clear</button>
-      <h1>{cartTotal}</h1>
-      <h1>{cartTotalItems}</h1>
-      {cart.map(item => {
-        return <pre><button onClick={() => {removeFromCart(item.gtin)}}>minus</button><button onClick={() => {addToCart(item)}}>plus</button><button onClick={() => {removeAllItems(item.gtin)}}>remove</button>{JSON.stringify(item)}</pre>
-      }
-      )}
-    </Layout>
+    <>
+    <Head>
+      <title>Cart</title>
+    </Head>
+    <CartPage />
+    </>
   );
 }
 
-export default observer(CartPage);
+export default observer(Cart);

@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 class CommonStore {
-  appLoading = false;
+  appLoading = true;
 
   constructor() {
     makeAutoObservable(this);
