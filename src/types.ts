@@ -5,6 +5,7 @@ export type Product = {
   recommendedRetailPriceCurrency: string;
   imageUrl: string;
   brandName: string;
+  quantity: number;
   categoryName: string;
 };
 
