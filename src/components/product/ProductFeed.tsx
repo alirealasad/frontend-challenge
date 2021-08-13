@@ -27,9 +27,6 @@ function ProuctFeed() {
     cartTotalItems,
   } = useStore().cartStore;
     const { currentPage} = useStore().pageStore;
-  const {
-appLoading
-  } = useStore().commonStore;
 
   useEffect(async () => {
         // if (totalProducts == 0 ) {

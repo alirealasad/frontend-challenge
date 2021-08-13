@@ -40,19 +40,19 @@ class ProductStore {
       store.commonStore.setAppLoading(false);
     };
 
-    loadProduct = async (id: number) => {
+    loadProduct = async (gtin: string) => {
         store.commonStore.setAppLoading(true);
-      await this.getProduct(id);
+      await this.getProduct(gtin);
 
-      if (this.selectedProduct?.id !== id) {
+      if (this.selectedProduct?.gtin !== gtin) {
         this.removeSelectedProduct();
-        await this.getProduct(id);
+        await this.getProduct(gtin);
       }
       store.commonStore.setAppLoading(false);
     };
 
-    getProduct = async (id: number) => {
-      let product = this.productRegistery.get(id);
+    getProduct = async (gtin: string) => {
+      let product = this.productRegistery.get(gtin);
 
       if (product) {
         runInAction(() => {
@@ -64,7 +64,7 @@ class ProductStore {
 
       store.commonStore.setAppLoading(true);
 
-      product = await agent.Products.details(id);
+      product = await agent.Products.details(gtin);
       this.setProduct(product);
 
       runInAction(() => {
