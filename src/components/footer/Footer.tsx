@@ -21,12 +21,12 @@ const Footer: React.FC<FooterProps> = () => {
       <span className="text-sm whitespace-nowrap opacity-75 ml-4">
         &copy; 2021 | Developed by{" "}
         <a
-          href="https://github.com/alirealasad"
-          className="text-[#f90] transition-all duration-200
-          border-b border-dotted border-[#f90]
-          hover:text-[#dc143c] hover:border-[#dc143c]"
+          href="https://www.qogita.com/"
+          className="text-[#1a1a2c] transition-all duration-200
+          border-b border-dotted border-[#1a1a2c]
+          hover:text-[#1a1a2c] hover:border-[##1a1a2c]"
         >
-          Asad Ali
+          Qogita
         </a>
       </span>
       </div>

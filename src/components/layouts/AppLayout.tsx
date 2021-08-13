@@ -21,7 +21,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <>
       <RouteChange />
-      <LoadingBar ref={loadingBar} height={3} color="#f90" shadow={true} />
+      <LoadingBar ref={loadingBar} height={3} color="white" shadow={true} />
       {children}
     </>
   );

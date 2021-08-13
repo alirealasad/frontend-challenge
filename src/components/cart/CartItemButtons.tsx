@@ -1,6 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores/store";
 import { Product } from "types/product";
+import { TrashIcon } from "@heroicons/react/solid";
+import RemoveShoppingCartRoundedIcon from "@material-ui/icons/RemoveShoppingCartRounded";
 
 interface CartItemButtonsProps {
   item: Product;
@@ -40,7 +42,7 @@ const CartItemButtons: React.FC<CartItemButtonsProps> = ({ item }) => {
         className="bg-[#dc143c] text-white border-none
         h-6 rounded-md ml-2 px-2"
       >
-        remove
+      <RemoveShoppingCartRoundedIcon style={{ fontSize: 16 }} />
       </button>
     </>
   );

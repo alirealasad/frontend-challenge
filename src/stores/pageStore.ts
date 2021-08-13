@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 class PageStore {
-  productsCount:number;
+  productsCount:number=0;
   currentPage:number=1;
 
   constructor() {
@@ -9,7 +9,11 @@ class PageStore {
   }
 
   get totalPage() {
+    if (this.productsCount<=20) {
+      return 1;
+    } else {
     return this.productsCount/20;
+    }
   }
 
   changePage = (page:number) => {

@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/qogita/frontend-challenge#readme",
   "dependencies": {
-    "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
     "mobx": "^6.3.2",

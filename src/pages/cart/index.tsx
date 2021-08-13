@@ -8,7 +8,6 @@ interface CartProps {}
 
 
 const Cart: React.FC<CartProps> = () =>{
-    const {cart, cartTotal, clearCart, cartTotalItems,addToCart,removeFromCart,removeAllItems} = useStore().cartStore;
 
   return (
     <>

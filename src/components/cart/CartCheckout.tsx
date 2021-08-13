@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { observer } from "mobx-react-lite";
 import { useStore } from "stores/store";
 import { errorAnimation } from "utils/animations";
+import PaymentIcon from '@material-ui/icons/Payment';
 
 interface CartCheckoutProps {}
 
@@ -25,7 +26,7 @@ const CartCheckout: React.FC<CartCheckoutProps> = () => {
           onClick={() =>{alert("Proceed to Payment")}  }
           variant="secondary"
         >
-          Proceed to Payment
+          <PaymentIcon /> Proceed to Payment
         </Button>
       </div>
     </div>

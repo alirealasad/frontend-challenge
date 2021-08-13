@@ -1,6 +1,7 @@
 import Button from "components/buttons/Button";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 interface CartEmptyProps {}
 
@@ -29,7 +30,7 @@ const CartEmpty: React.FC<CartEmptyProps> = () => {
         </p>
         <div className="mt-4">
           <Button onClick={() => router.push("/")} variant="secondary">
-            Continue Shopping
+            <ShoppingBasketIcon />Continue Shopping
           </Button>
         </div>
       </div>

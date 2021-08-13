@@ -1,5 +1,6 @@
 import { makeAutoObservable, reaction } from "mobx";
 import { Product } from "types/product";
+import { store } from "./store";
 
 class CartStore {
   cartRegistery: Map<number, Product> = process.browser
@@ -13,6 +14,7 @@ class CartStore {
       () => this.cartRegistery.entries(),
       (entries) => {
         if (entries) {
+
           window.localStorage.setItem(
             "cart",
             JSON.stringify(Array.from(entries))
@@ -20,6 +22,7 @@ class CartStore {
         } else {
           window.localStorage.removeItem("cart");
         }
+        store.commonStore.setAppLoading(false);
       }
     );
   }

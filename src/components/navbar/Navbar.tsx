@@ -1,89 +1,102 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Link from 'next/link';
+import { useRef, useState } from "react";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useStore } from "stores/store";
+import { observer } from "mobx-react-lite"
 
-const navigation = [
-  { name: 'Products', href: '/'},
-  { name: 'Cart', href: '/cart' },
-]
+function Navbar() {
+  const panelRef = useRef();
+  const [isVisibile, setVisibility] = useState(false);
+  const router = useRouter();
+  const { cartTotalItems } = useStore().cartStore;
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+  function toggle() {
+    if (isVisibile) {
+      panelRef.current.classList.add("hidden");
+      setVisibility(false);
+    } else {
+      panelRef.current.classList.remove("hidden");
+      setVisibility(true);
+    }
+  }
 
-export default function Example() {
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
-    <Disclosure as="nav" className="bg-[#1a1a2c]">
-      {({ open }) => (
-        <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
+    <nav className="sticky top-0 z-50 relative flex flex-wrap items-center justify-between px-2 py-3 bg-[#1a1a2c] mb-3">
+      <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div className="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+          <Link href="/">
+            <a className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">
+              <div className="flex-shrink-0 flex items-center">
+                <img
+                  className="block lg:hidden h-8 w-auto"
+                  src="/images/qogita.png"
+                  alt="Workflow"
+                />
+                <img
+                  className="hidden lg:block h-8 w-auto"
+                  src="/images/qogita.png"
+                  alt="Workflow"
+                />
+                Qogita
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="/images/qogita.png"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="/images/qogita.png"
-                    alt="Workflow"
-                  />
-                </div>
-                <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <Link key={item.name} href={item.href}>
-                      <a
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <Disclosure.Panel className="sm:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+            </a>
+          </Link>
+          <button
+            onClick={() => {
+              toggle();
+            }}
+            className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            type="button"
+          >
+            <span className="block relative w-6 h-px rounded-sm bg-white"></span>
+            <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+            <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+          </button>
+        </div>
+        <div ref={panelRef} className="lg:flex flex-grow items-center hidden">
+          <ul className="flex flex-col lg:flex-row list-none ml-auto">
+            <li className="nav-item">
+              <Link href="/">
                 <a
-                  key={item.name}
-                  href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
+                    router.asPath === "/"
+                      ? "bg-gray-600 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "px-3 py-2 rounded-md flex items-center text-xs uppercase font-bold leading-snug text-white"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
                 >
-                  {item.name}
+                  <HomeRoundedIcon />
                 </a>
-              ))}
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
-  )
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/cart">
+                <a
+                  className={classNames(
+                    router.asPath === "/cart"
+                      ? "bg-gray-600 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "px-3 py-2 rounded-md flex items-center text-xs uppercase font-bold leading-snug text-white"
+                  )}
+                >
+                  <ShoppingCartRoundedIcon />
+                  <span suppressHydrationWarning
+className="absolute pt-[0.15rem] text-xs text-center
+w-5 h-5 bg-[#f90] text-white font-bold translate-x-1/2 -translate-y-1/2 rounded-full">{cartTotalItems}</span>
+                </a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
+
+export default observer(Navbar)

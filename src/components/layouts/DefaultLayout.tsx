@@ -10,10 +10,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
       className="w-screen min-h-screen relative
       bg-[#fafafa] flex flex-col"
     >
+     <Navbar />
 
         <AnimatePresence exitBeforeEnter>
           <AnimateSharedLayout>
-            <Navbar />
               <div className="container mx-auto px-4">
             {children}
                 </div>
