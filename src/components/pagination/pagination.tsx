@@ -12,7 +12,7 @@ function Pagination() {
 }
 
   return(
-    <div class="flex flex-col items-center my-12">
+    <div className="flex flex-col items-center my-12">
       <nav
         className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px content-between"
       >
